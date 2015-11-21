@@ -1,0 +1,35 @@
+{
+  "name": "demonstrator",
+  "version": "0.0.1",
+  "description": "Catpure progress of user tests and share it with your team",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start --single-run"
+  },
+  "author": "Derek Ekins",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-monkey": "^1.26.2",
+    "chai": "^3.4.1",
+    "karma": "^0.13.15",
+    "karma-browserify": "^4.4.0",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-mocha": "^0.2.1",
+    "mocha": "^2.3.4",
+    "plastiq": "^1.24.6",
+    "plastiq-jsxify": "^1.0.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dereke/demonstrator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dereke/demonstrator/issues"
+  },
+  "homepage": "https://github.com/dereke/demonstrator"
+}
