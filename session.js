@@ -1,3 +1,5 @@
+var httpism = require('httpism');
+
 function Session(selector){
   this.frames   = [];
   this.selector = selector;
@@ -10,7 +12,7 @@ Session.prototype.capture = function(eventType){
   setTimeout(function(){
     frames.push({
       event: eventType,
-      html: document.querySelector(selector).innerHTML 
+      html: document.querySelector(selector).innerHTML
     });
   }, 0);
 };
@@ -38,5 +40,17 @@ Session.prototype.display = function(parentDocument){
   parentDocument.body.appendChild(playback);
 };
 
+Session.prototype.send = function(){
+  var url = '/api/'+this.auth.user+'/'+this.auth.app;
+  var body = {
+    frames: this.frames
+  };
+  var options = {
+    headers: {
+      api_key: this.auth.api_key
+    }
+  };
+  return httpism.post(url, body, options);
+};
 
 module.exports = Session;

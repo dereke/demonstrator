@@ -1,4 +1,3 @@
-var expect = require('chai').expect;
 var browser = require('browser-monkey');
 var demonstrator = require('../');
 
@@ -24,6 +23,13 @@ function mountApp(){
 }
 
 describe('recorder', function(){
+  beforeEach(function(){
+    window.__env__ = {
+      DEMONSTRATOR_API_KEY: '123',
+      DEMONSTRATOR_USER: 'dereke',
+      DEMONSTRATOR_APP: 'demonstrator'
+    };
+  });
   it('records a browser-monkey test', function(){
     mountApp();
 
@@ -49,6 +55,15 @@ describe('recorder', function(){
       }).then(function(){
         return browser.find('.demonstrator .frame .html').shouldHave({html: [frames[0].html, frames[1].html, frames[2].html]});
       });
+    });
+  });
+
+  it('sets auth data for a session', function(){
+    var recorder = demonstrator.record(browser, 'body');
+    expect(recorder.auth).to.eql({
+      api_key: '123',
+      user: 'dereke',
+      app: 'demonstrator'
     });
   });
 });

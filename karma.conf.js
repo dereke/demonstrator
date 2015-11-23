@@ -3,13 +3,14 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['browserify', 'mocha'],
     files: [
+      'test/global.js',
       'test/**/*Spec.js'
     ],
     exclude: [
       '**/*.sw?'
     ],
     preprocessors: {
-      'test/**/*Spec.js': ['browserify']
+      'test/**/*.js': ['browserify']
     },
     browserify: {
       debug: true,
