@@ -1,4 +1,5 @@
 var httpism = require('httpism');
+var server = 'https://continuous-demo.herokuapp.com';
 
 function Session(selector){
   this.frames   = [];
@@ -41,7 +42,7 @@ Session.prototype.display = function(parentDocument){
 };
 
 Session.prototype.send = function(){
-  var url = '/api/'+this.auth.user+'/'+this.auth.app;
+  var url = server + '/api/'+this.auth.user+'/'+this.auth.app;
   var body = {
     frames: this.frames
   };

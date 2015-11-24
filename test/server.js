@@ -11,7 +11,7 @@ module.exports = function(){
 
   var router = mockXhrRouter();
 
-  router.post('/api/:user/:app', function(req){
+  router.post('https://continuous-demo.herokuapp.com/api/:user/:app', function(req){
     if (!server.apiKeys[req.headers.api_key]){
       return {
         statusCode: 500,
