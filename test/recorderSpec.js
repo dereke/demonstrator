@@ -33,8 +33,7 @@ describe('recorder', function(){
   it('records a browser-monkey test', function(){
     mountApp();
 
-    var recorder = demonstrator.record(browser, '.test');
-    browser = recorder.browser;
+    var recorder = demonstrator.recordSession(browser, '.test');
     return browser.find('input').typeIn('hello world').then(function(){
       return browser.find('button').click();
     }).then(function(){
@@ -59,7 +58,7 @@ describe('recorder', function(){
   });
 
   it('sets auth data for a session', function(){
-    var recorder = demonstrator.record(browser, 'body');
+    var recorder = demonstrator.recordSession(browser, 'body');
     expect(recorder.auth).to.eql({
       api_key: '123',
       user: 'dereke',

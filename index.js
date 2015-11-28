@@ -1,18 +1,28 @@
 var Session = require('./session');
-var config = require('./config');
 
 module.exports = {
   record: function(browser, selector){
-    var session = new Session(selector);
-    session.auth = config.getAuth();
-    session.browser = browser.on(function(e){
-      if (e.element && e.text != undefined){
-        e.element.setAttribute('value', e.text);
-      }
-
-      session.capture(e.type);
+    before(function(){
+      this.sessions = [];
     });
-    session.capture('initial');
-    return session;
-  }
+
+    after(function(){
+      this.timeout(this.sessions.length * 3000);
+      var promises = [];
+      this.sessions.forEach(function(session){
+        promises.push(session.send());
+      });
+      return Promise.all(promises);
+    });
+
+    beforeEach(function(){
+      this.session = Session.record(browser, selector);
+    });
+
+    afterEach(function(){
+      this.sessions.push(this.session);
+    });
+  },
+
+  recordSession: Session.record
 }
