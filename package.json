@@ -1,6 +1,6 @@
 {
   "name": "demonstrator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Catpure progress of user tests and share it with your team",
   "main": "index.js",
   "scripts": {
